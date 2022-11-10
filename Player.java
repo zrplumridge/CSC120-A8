@@ -1,3 +1,13 @@
+/*
+ * TO DO: 
+ * undo method (needed for contract)
+ * showOptions method
+ * some way to store locations
+ * come up with some more types of objects --> create classes for these
+ * loop to continue to play
+ */
+
+
 public class Player implements Contract{
     
     String itemInHand;
@@ -11,20 +21,33 @@ public class Player implements Contract{
 
     }
 
+    /*
+     * player picks up item
+     * @param item name
+     */
     public void grab(String item){
         itemInHand = item;
         System.out.println("You grabbed " + item);
     }
 
+    /*
+     * player drops item / puts it down
+     * @param item name
+     * @return item name
+     */
     public String drop(String item){
         itemInHand = null;
         System.out.println("You dropped " + item);
         return item;
     }
 
+    /*
+     * player examines item for further details
+     */
     public void examine(String item){
         if (itemInHand != null){
             System.out.println("You examined " + item);
+            showOptions(item);
         } else {
             System.out.println("There is nothing in your hand. Grab something to examine it. ");
         }
@@ -86,9 +109,24 @@ public class Player implements Contract{
         //un-use item?
     }
 
+    public void checkIfExhausted(){
+        if (tiredness >= 100){
+            shrink();
+            tiredness = 90;
+        }
+    }
+
+    public void showOptions(String item){
+        //show options based on item
+    }
+
+    public void showOptions(int playerX, int playerY){
+        //show options based on location
+    }
+
     public static void main(String[] args){
         Player zip = new Player("Zip");
-        
+    
         zip.fly(2, 5);
         zip.grab("wings");
         zip.use("wings");
