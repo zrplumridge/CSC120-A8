@@ -64,18 +64,23 @@ public class Player implements Contract{
     public boolean walk(String direction){
         if (direction == "n" && playerY < 20){
             playerY ++;
+            tiredness ++;
             return true;
         } else if (direction == "s" && playerY > -20){
             playerY --;
+            tiredness ++;
             return true;
         } else if (direction == "e" && playerX < 20){
             playerX ++;
+            tiredness++;
             return true;
         } else if (direction == "w" && playerX > -20){
             playerX --;
+            tiredness++;
             return true;
         } else {
             System.out.println("You can no longer move in that direction. ");
+            tiredness++;
             return false;
         }
     }
